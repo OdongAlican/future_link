@@ -1,24 +1,17 @@
 <template>
   <div id="app">
     <div class="container">
-      <div class="addcutomer-section">
-        <AddCustomer/>
-      </div>
-      <Customers/>
+      <span></span><router-link to="/"></router-link>
+      <span></span><router-link to="/add-customer"></router-link>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import Customers from './components/Customers.vue'
-import AddCustomer from './components/AddCustomer.vue'
 
 export default {
   name: 'App',
-  components: {
-    Customers,
-    AddCustomer
-  }
 }
 </script>
 
