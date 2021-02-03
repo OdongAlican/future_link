@@ -6,7 +6,22 @@
                 <p>{{ customer.name }}</p>
                 <p>{{ customer.address}}</p>
                 <div class="avatar">
-                    <img :src="customer.avatar">
+                    <img :src="`${customer.avatar}`">
+                </div>
+                <div class="update-and-delete-icons-section">
+                    <i 
+                    @click="deleteCustomer(customer.id)"
+                    class="fas fa-trash-alt"></i>
+                </div>
+                <div class="list-of-invoices">
+                    <span>
+                        <router-link
+                        :to="`/customer/${customer.id}/invoices`"
+                        >View Invoices</router-link>
+                    </span>
+                </div>
+                <div class="update-customer">
+                    
                 </div>
             </div>
         </div>
@@ -17,7 +32,7 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
     name: "Customers",
     methods: {
-        ...mapActions(['fetchCustomers'])
+        ...mapActions(['fetchCustomers', 'deleteCustomer'])
     },
     computed: mapGetters(['allCustomers']),
     created(){
