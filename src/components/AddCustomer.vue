@@ -7,7 +7,7 @@
                 <input type="number" v-model="address" placeholder="Add address ...">
                 <input type="file" @change="onFileSelected">
                 <input 
-                type="submit" value="Submit">
+                type="submit" value="Submit" class="submit-button">
             </form>
         </div>
     </div>
@@ -16,6 +16,7 @@
 import { mapActions } from 'vuex'
 export default {
     name: "AddCustomer",
+    props: ['displayModalAdd'],
     data () {
         return {
             selectedFile: null,
@@ -38,10 +39,37 @@ export default {
                 avatar: this.avatar
             }
             this.addCustomers(data) 
+            this.displayModalAdd(false)
         }
     }
 }
 </script>
 <style scoped>
+        .add-customer-section {
+        padding: 0 20px 20px;
+        width: 100%;
+    }
 
+    .add-customer-section input {
+        border: none;
+        height: 35px;
+        width: 100%;
+        margin-bottom: 10px;
+        display: block;
+        padding: 0 10px;
+        outline: none;
+    }
+    
+    .add-customer-section h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #666;
+    }
+
+    .submit-button {
+        background-color: #0078AE;
+        border-radius: 3px;
+        font-weight: 600;
+        color: #fff;
+    }
 </style>
