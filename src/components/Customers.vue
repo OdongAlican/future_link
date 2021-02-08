@@ -6,9 +6,7 @@
                 <input type="text" placeholder="Search Customer ...">
             </div>
             <div class="create-cutomer-button-section">
-                <router-link to="/add-customer">
-                    <button>Create</button>
-                </router-link>
+                    <button @click="displayModalAdd(true)">Create</button>
                 <i class="far fa-bell"></i>
             </div>
         </div>
@@ -49,19 +47,30 @@
                 </div>
             </div>
         </transition>
+        <transition name="fade" appear>
+            <div v-if="showModalAdd" class="modal-overlay">
+                <div class="modal-overlay-inner">
+                    <i @click="displayModalAdd(false)" class="far fa-times-circle"></i>
+                    <add-customer :displayModalAdd="displayModalAdd"/>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import UpdateCustomer from './UpdateCustomer'
+import UpdateCustomer from './UpdateCustomer';
+import AddCustomer from './AddCustomer'
 export default {
     name: "Customers",
     components: {
-       'update-customer': UpdateCustomer
+       'update-customer': UpdateCustomer,
+       'add-customer': AddCustomer
     },
     data(){
         return {
             showModal: false,
+            showModalAdd: false,
             editingCustomer: {},
         }
     },
@@ -72,6 +81,9 @@ export default {
         },
         displayModal(value){
             this.showModal = value
+        },
+        displayModalAdd(value){
+            this.showModalAdd = value
         }
     },
     computed: mapGetters(['allCustomers']),
