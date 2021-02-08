@@ -3,7 +3,7 @@
         <h3>Add Customer</h3>
         <div class="add-customer-form">
             <form @submit.prevent="submitCustomer">
-                <input type="text" v-model="title" placeholder="Add customer name ...">
+                <input type="text" v-model="name" placeholder="Add customer name ...">
                 <input type="number" v-model="address" placeholder="Add address ...">
                 <input type="file" @change="onFileSelected">
                 <input 
@@ -19,7 +19,7 @@ export default {
     data () {
         return {
             selectedFile: null,
-            title: '',
+            name: '',
             address: '',
             avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fronx/128.jpg'
         }
@@ -33,7 +33,7 @@ export default {
 
         submitCustomer(){
             const data = {
-                title: this.title,
+                name: this.name,
                 address: this.address,
                 avatar: this.avatar
             }
