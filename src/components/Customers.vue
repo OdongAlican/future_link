@@ -6,7 +6,9 @@
                 <input type="text" placeholder="Search Customer ...">
             </div>
             <div class="create-cutomer-button-section">
-                <button>Create</button>
+                <router-link to="/add-customer">
+                    <button>Create</button>
+                </router-link>
                 <i class="far fa-bell"></i>
             </div>
         </div>
@@ -30,21 +32,47 @@
                     </div>
                 </div>
                 <div class="update-and-delete-icons-section">
-                    <i class="fas fa-user-edit"></i>
-                    <i 
-                    @click="deleteCustomer(customer.id)"
+                    <i @click="displayModal(true); updateModal(customer)"
+                        class="fas fa-user-edit"></i>
+                    <i @click="deleteCustomer(customer.id)"
                     class="fas fa-trash-alt"></i>
                 </div>
             </div>
         </div>
+        <transition name="fade" appear>
+            <div v-if="showModal" class="modal-overlay">
+                <div class="modal-overlay-inner">
+                    <i @click="displayModal(false)" class="far fa-times-circle"></i>
+                    <update-customer 
+                    :displayModal="displayModal"
+                    :customer="editingCustomer"></update-customer>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import UpdateCustomer from './UpdateCustomer'
 export default {
     name: "Customers",
+    components: {
+       'update-customer': UpdateCustomer
+    },
+    data(){
+        return {
+            showModal: false,
+            editingCustomer: {},
+        }
+    },
     methods: {
-        ...mapActions(['fetchCustomers', 'deleteCustomer'])
+        ...mapActions(['fetchCustomers', 'deleteCustomer']),
+        updateModal(customer){
+            this.editingCustomer = customer
+        },
+        displayModal(value){
+            this.showModal = value
+        }
     },
     computed: mapGetters(['allCustomers']),
     created(){
@@ -53,6 +81,23 @@ export default {
 }
 </script>
 <style scoped>
+
+    .cutomer-section {
+        position: relative;
+    }
+
+    .modal-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 98;
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     i {
         color: #D3D3D3;
@@ -135,6 +180,21 @@ export default {
     }
 
     .fa-trash-alt {
+        color: red;
+    }
+
+    .modal-overlay-inner {
+        width: 40%;
+        height: 40%;
+        background-color: #ECF0F3;;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .fa-times-circle {
+        cursor: pointer;
         color: red;
     }
 </style>
