@@ -20,7 +20,6 @@ const actions = {
     async addCustomers({ commit }, data ){
         try {
             const response = await axios.post('https://6012bf0f54044a00172dc953.mockapi.io/sp5/api/v1/customer', data)
-            console.log('new', response.data)
             commit('newCustomer', response.data)            
         } catch (error) {
             console.log(error)
