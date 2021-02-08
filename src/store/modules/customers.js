@@ -20,6 +20,7 @@ const actions = {
     async addCustomers({ commit }, data ){
         try {
             const response = await axios.post('https://6012bf0f54044a00172dc953.mockapi.io/sp5/api/v1/customer', data)
+            console.log('new', response.data)
             commit('newCustomer', response.data)            
         } catch (error) {
             console.log(error)
@@ -33,9 +34,16 @@ const actions = {
             console.log(error)
         }
     },
-    async editCustomer({ commit }, id){
+    async editCustomer({ commit }, data){
+        
+        const details = {
+            name: data.name,
+            address: data.address,
+            avatar: data.avatar
+        }
+
         try {
-            const response = await axios.put(`https://6012bf0f54044a00172dc953.mockapi.io/sp5/api/v1/customer/${id}`, data)
+            const response = await axios.put(`https://6012bf0f54044a00172dc953.mockapi.io/sp5/api/v1/customer/${data.id}`, details)
             console.log(response.data, 'updated customer')
             commit('updateCustomer', response.data)            
         } catch (error) {
@@ -47,7 +55,15 @@ const actions = {
 const mutations = {
     setCustomers: (state, customers) => (state.customers = customers),
     newCustomer: (state, customer) => state.customers.unshift(customer),
-    removeCustomer: (state, id) => state.customers = state.customers.filter(customer => customer.id !== id)
+    removeCustomer: (state, id) => state.customers = state.customers.filter(customer => customer.id !== id),
+    updateCustomer: (state, updatedCustomer) => {
+        let customers = [...state.customers];
+        const index = customers.findIndex(customer => customer.id === updatedCustomer.id);
+        if(index !== -1) {
+            customers.splice(index, 1, updatedCustomer);
+        }
+        state.customers = [...customers];
+    }
 };
 
 export default {
