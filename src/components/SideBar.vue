@@ -18,8 +18,7 @@
                 <i class="fas fa-chart-pie"></i>
             </div>
             <div class="dashboard-text-section">
-                <router-link
-                to="/"
+                <router-link to="/"
                 >Customers</router-link>
             </div>
         </div>
@@ -36,7 +35,8 @@
                 <i class="fas fa-poll"></i>
             </div>
             <div class="product-text-section">
-                <span>Products</span>
+                <router-link to="/products"
+                >Products</router-link>
             </div>
         </div>
         <div class="settings-section">
@@ -73,6 +73,7 @@ export default {
         position: fixed;
         left: 0;
         width: 200px;
+        z-index: 2;
         border: 1px solid #0086c2
     }
 
@@ -118,7 +119,8 @@ export default {
         cursor: pointer;
     }
 
-    .dashboard-text-section a {
+    .dashboard-text-section a,
+    .product-text-section a {
         color: #fff;
         text-decoration: none;
     }
