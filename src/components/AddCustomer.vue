@@ -45,7 +45,7 @@ export default {
 }
 </script>
 <style scoped>
-        .add-customer-section {
+    .add-customer-section {
         padding: 0 20px 20px;
         width: 100%;
     }
