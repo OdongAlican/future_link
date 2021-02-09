@@ -1,6 +1,6 @@
 <template>
     <div class="cutomer-section">
-        <div class="upper-search-section">
+        <div class="upper-search-section shadow">
             <div class="input-search-section">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search Customer ...">
@@ -12,7 +12,7 @@
         </div>
         <h3 class="header-section">{{ allCustomers.length }} Customers</h3>
         <div class="customers-list">
-            <div v-for="customer in allCustomers" :key="customer.id" class="customer shadow card p-2 m-2">
+            <div v-for="customer in allCustomers" :key="customer.id" class="customer shadow p-2 m-2">
                 <div class="main-customer-details-section">
                     <div class="avatar">
                         <img :src="`https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80`">
@@ -25,7 +25,7 @@
                         <div class="list-of-invoices">
                                 <router-link
                                 :to="`/customer/${customer.id}/invoices`"
-                                >View Invoices</router-link>
+                                ><i class="fas fa-file-alt mr-1"></i>View Invoices</router-link>
                         </div>
                     </div>
                 </div>
