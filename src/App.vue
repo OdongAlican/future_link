@@ -4,8 +4,6 @@
       <SideBar/>
     </div>
     <div class="container-main-section">
-      <span></span><router-link to="/"></router-link>
-      <span></span><router-link to="/add-customer"></router-link>
       <router-view></router-view>
     </div>
   </div>
@@ -37,6 +35,12 @@ export default {
   .upper-search-section {
     display: flex;
     padding: 16px;
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    padding-left: 220px;
+    left: 0;
   }
 
   .input-search-section {
@@ -80,5 +84,6 @@ export default {
     font-weight: 600;
     padding: 16px;
     background-color: #ECF0F3;
+    padding-top: 100px;
   }
 </style>
