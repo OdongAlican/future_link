@@ -53,7 +53,7 @@ const actions = {
 
 const mutations = {
     setCustomers: (state, customers) => (state.customers = customers),
-    newCustomer: (state, customer) => state.customers.unshift(customer),
+    newCustomer: (state, customer) => state.customers.push(customer),
     removeCustomer: (state, id) => state.customers = state.customers.filter(customer => customer.id !== id),
     updateCustomer: (state, updatedCustomer) => {
         let customers = [...state.customers];
